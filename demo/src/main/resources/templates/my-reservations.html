@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Reservations</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header th:insert="fragments/header :: header"></header>
+    <main>
+        <h2>My Reservations</h2>
+        <div th:each="reservation : ${reservation_test}">
+            <div>
+                <p th:text="'Car: ' + ${reservation.car.model}">Car Model</p>
+                <p th:text="'Test Date: ' + ${reservation.testDate}">Test Date</p>
+                <p th:text="'Status: ' + ${reservation.status}">Status</p>
+                <a th:href="@{/reservations/edit/{id}(id=${reservation.id})}" class="btn">Modify</a>
+                <a th:href="@{/reservations/cancel/{id}(id=${reservation.id})}" class="btn">Cancel</a>
+            </div>
+        </div>
+    </main>
+    <footer th:insert="fragments/footer :: footer"></footer>
+</body>
+</html>

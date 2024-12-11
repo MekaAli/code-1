@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Management</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header th:insert="fragments/header :: header"></header>
+    <main>
+        <h2>Order Management</h2>
+        <div th:each="order : ${orders}">
+            <div>
+                <p th:text="'Client: ' + ${order.client.email}">Client Email</p>
+                <p th:text="'Car: ' + ${order.car.model}">Car Model</p>
+                <p th:text="'Status: ' + ${order.status}">Status</p>
+                <a th:href="@{/orders/validate/{id}(id=${order.id})}" class="btn">Validate Order</a>
+                <a th:href="@{/orders/cancel/{id}(id=${order.id})}" class="btn">Cancel Order</a>
+            </div>
+        </div>
+    </main>
+    <footer th:insert="fragments/footer :: footer"></footer>
+</body>
+</html>

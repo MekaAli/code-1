@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Product Catalog</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header th:insert="fragments/header :: header"></header>
+    <main>
+        <h2>Manage Product Catalog</h2>
+        <div th:each="car : ${cars}">
+            <div>
+                <p th:text="'Model: ' + ${car.model}">Car Model</p>
+                <p th:text="'Availability: ' + ${car.availability}">Availability</p>
+                <a th:href="@{/catalog/update/{id}(id=${car.id})}" class="btn">Update</a>
+                <a th:href="@{/catalog/remove/{id}(id=${car.id})}" class="btn">Remove</a>
+            </div>
+        </div>
+    </main>
+    <footer th:insert="fragments/footer :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header th:insert="fragments/header :: header"></header>
+    <main>
+        <h2>Admin Dashboard</h2>
+        <p>Welcome to the Admin Dashboard.</p>
+        <a th:href="@{/manage-users}" class="btn">Manage Users</a>
+        <a th:href="@{/manage-orders}" class="btn">Manage Orders</a>
+    </main>
+    <footer th:insert="fragments/footer :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Car Catalog</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header th:insert="fragments/header :: header"></header>
+    <main>
+        <h2>Available Cars</h2>
+        <div th:each="car : ${voitures}">
+            <div>
+                <h3 th:text="${car.model}">Car Model</h3>
+                <p th:text="${car.description}">Description</p>
+                <p th:text="'Price: ' + ${car.price}">Price</p>
+                <p th:text="'Availability: ' + ${car.availability}">Availability</p>
+                <a th:href="@{/order/{id}(id=${car.id})}" class="btn">Order Now</a>
+            </div>
+        </div>
+    </main>
+    <footer th:insert="fragments/footer :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Summary</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header th:insert="fragments/header :: header"></header>
+    <main>
+        <h2>Order Summary</h2>
+        <div>
+            <p th:text="'Car Model: ' + ${commande.voiture.model}">Car Model</p>
+            <p th:text="'Price: ' + ${commande.voiture.prix}">Price</p>
+            <p th:text="'Options: ' + ${commande.voiture.options}">Options</p>
+            <p th:text="'Total Price: ' + ${commande.totalPrice}">Total Price</p>
+            <p th:text="'Deposit: ' + ${commande.acompt}">Deposit</p>
+            <a th:href="@{/commande/confirm/{id}(id=${commande.id})}" class="btn">Confirm Order</a>
+        </div>
+    </main>
+    <footer th:insert="fragments/footer :: footer"></footer>
+</body>
+</html>

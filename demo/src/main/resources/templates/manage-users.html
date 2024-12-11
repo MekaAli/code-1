@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header th:insert="fragments/header :: header"></header>
+    <main>
+        <h2>Manage Users</h2>
+        <div th:each="user : ${users}">
+            <div>
+                <p th:text="'User: ' + ${user.email}">User Email</p>
+                <p th:text="'Role: ' + ${user.role}">Role</p>
+                <a th:href="@{/users/update/{id}(id=${user.id})}" class="btn">Update Role</a>
+                <a th:href="@{/users/delete/{id}(id=${user.id})}" class="btn">Delete User</a>
+            </div>
+        </div>
+    </main>
+    <footer th:insert="fragments/footer :: footer"></footer>
+</body>
+</html>
