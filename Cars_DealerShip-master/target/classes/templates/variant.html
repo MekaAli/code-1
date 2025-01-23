@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Variant Details</title>
+</head>
+<body>
+<h1>Variant Details</h1>
+<p>Voiture: <span th:text="${variant.voiture.modelName}"></span></p>
+<p>Couleur: <span th:text="${variant.color.nom_color}"></span></p>
+<p>Moteur: <span th:text="${variant.moteur.nom_moteur}"></span></p>
+<p>Energie: <span th:text="${variant.energie}"></span></p>
+<p>Stock: <span th:text="${variant.stock}"></span></p>
+<p>Prix de base: <span th:text="${variant.basePrice}"></span></p>
+<p>Caractéristiques:
+<ul>
+  <li th:each="feature : ${variant.features}" th:text="${feature.name}"></li>
+</ul>
+<p>Images:
+<ul>
+  <li th:each="image : ${variant.variant_images}">
+    <img th:src="${image.imageUrl}" alt="Image not found" style="width:100px;height:100px;">
+  </li>
+</ul>
+</p>
+
+</body>
+</html>

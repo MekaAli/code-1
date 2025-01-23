@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+      text-align: center;
+    }
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
+      display: block;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+    button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #4CAF50;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Sign Up</h1>
+  <form th:action="@{/signup}" method="post" onsubmit="return validateForm()">
+    <label for="nom">Nom:</label>
+    <input type="text" id="nom" name="nom" required placeholder="Entrez votre nom">
+
+    <label for="prenom">Prenom:</label>
+    <input type="text" id="prenom" name="prenom" required placeholder="Entrez votre prenom">
+
+    <label for="email">Adresse Email:</label>
+    <input type="email" id="email" name="adresseEmail" required placeholder="Entrez votre email">
+    <!-- Error message for duplicate email -->
+    <p th:if="${emailError}" style="color: red;" th:text="${emailError}"></p>
+
+    <label for="numeroTel">Numéro de Téléphone:</label>
+    <input type="text" id="numeroTel" name="numeroTel" required placeholder="Entrez votre numéro de téléphone">
+
+    <label for="password">Mot de passe:</label>
+    <input type="password" id="password" name="password" required placeholder="Entrez votre mot de passe">
+    <!-- Error message for password length -->
+    <p th:if="${passwordLengthError}" style="color: red;" th:text="${passwordLengthError}"></p>
+
+    <label for="passwordConfirmation">Confirmez le mot de passe:</label>
+    <input type="password" id="passwordConfirmation" name="passwordConfirmation" required placeholder="Confirmez votre mot de passe">
+    <!-- Error message for password mismatch -->
+    <p th:if="${passwordError}" style="color: red;" th:text="${passwordError}"></p>
+
+
+    <button type="submit">Sign Up</button>
+  </form>
+  <a class="back-link" href="/login">Already have an account? Log In</a>
+</div>
+
+<script>
+  function validateForm() {
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("passwordConfirmation").value;
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      alert("Les mots de passe ne correspondent pas.");
+      return false;
+    }
+
+    // Check password length
+    if (password.length < 8) {
+      alert("Le mot de passe doit contenir au moins 8 caractères.");
+      return false;
+    }
+
+    return true;
+  }
+</script>
+
+</body>
+</html>
